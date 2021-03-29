@@ -1,0 +1,26 @@
+- name : Start or stop prompted service
+  hosts: self
+  become: yes
+  become_user: root
+  vars_prompt:
+    - name: servicename
+      prompt: Enter service name to start or stop
+      private: no
+      
+    - name: status
+      prompt: Do you want to start or stop this service? (start/stop)
+      private: no
+      
+  tasks:
+  - name: Start service
+    service:
+      name: "{{ servicename }}.service"
+      state: started
+    when: status == "start"
+    
+    service:
+      name: "{{ servicename }}.service"
+      state: stopped
+    when: status == "stop"
+    
+    

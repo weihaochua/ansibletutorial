@@ -1,0 +1,11 @@
+[all]
+localhost ansible_connection=local
+centos72
+centos73
+
+[servers]
+centos72
+centos73
+
+[self]
+localhost ansible_connection=local
